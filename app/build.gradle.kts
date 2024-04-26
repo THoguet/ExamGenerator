@@ -7,7 +7,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    application;
+	`maven-publish`
 }
 
 repositories {
@@ -32,9 +33,27 @@ java {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/THoguet/ExamGenerator")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
+}
+
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "fr.nessar.App"
 }
 
 tasks.named<Test>("test") {
@@ -48,3 +67,4 @@ tasks.jar {
 		attributes["Main-Class"] = application.mainClass
 	}
 }
+

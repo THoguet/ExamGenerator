@@ -1,4 +1,4 @@
-package org.example;
+package fr.nessar;
 
 import java.io.IOException;
 import java.nio.file.Files;
