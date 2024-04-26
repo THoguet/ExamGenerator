@@ -41,3 +41,10 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.jar {
+	// Ensure the JAR is executable.
+	manifest {
+		attributes["Main-Class"] = application.mainClass
+	}
+}

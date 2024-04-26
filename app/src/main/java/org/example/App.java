@@ -10,7 +10,7 @@ import java.util.List;
 public class App {
 	public static void main(String[] args) throws Exception {
 		if (args.length != 3) {
-			System.out.println("Usage: java -jar app.jar <htmlTemplate.html> <numeroEtudiants.txt> <encryptKey>");
+			System.out.println("Usage: java -jar build/libs/app.jar <template.html> <studentNumbers.txt>");
 			System.exit(1);
 		}
 		ExamenHTML examen = new ExamenHTML(args[0]);
