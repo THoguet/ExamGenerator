@@ -2,10 +2,11 @@ package fr.nessar;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.OpenOption;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.io.Files;
 
 public class GenAnoCode {
 
@@ -66,7 +67,7 @@ public class GenAnoCode {
 			csv.append(pair.getKey()).append(",").append(pair.getValue()).append("\n");
 		}
 		try {
-			Files.write(csv.toString().getBytes(), new File(path));
+			Files.write(new File(path).toPath(), csv.toString().getBytes(), StandardOpenOption.CREATE);
 		} catch (IOException e) {
 			System.out.println("Error saving the CSV file" + e.getMessage());
 		}
